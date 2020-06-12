@@ -66,8 +66,14 @@ function Student({ student, addTag, tags }) {
 }
 
 function App() {
+  //search student by name
   const [searchTerm, setSearchTerm] = useState("");
 
+  const updateSearchTerm = event => {
+    setSearchTerm(event.target.value);
+  };
+
+  //add tags under a student's profile
   const [tags, setTags] = useState(
     students.reduce((tags, student) => {
       tags[student.id] = [];
@@ -83,14 +89,20 @@ function App() {
     ...so on.
   }
   */
+
   const addTag = (studentId, newTag) => {
     setTags({ ...tags, [studentId]: [...tags[studentId], newTag] });
     console.log(tags);
   };
 
-  const updateSearchTerm = event => {
-    setSearchTerm(event.target.value);
+  //search student by tag
+  const [searchTag, setSearchTag] = useState("");
+
+  const updateSearchTag = event => {
+    setSearchTag(event.target.value);
   };
+
+  const nooneHasATag = Object.values(tags).flat().length === 0;
 
   return (
     <div className="App">
@@ -105,9 +117,9 @@ function App() {
         <input
           id="tag-search"
           type="text"
-          value={searchTerm}
-          onChange={updateSearchTerm}
-          placeholder="search student by tags (not working atm)"
+          value={searchTag}
+          onChange={updateSearchTag}
+          placeholder="search student by tags"
         />
       </div>
       {students
@@ -115,6 +127,14 @@ function App() {
           `${student.firstName} ${student.lastName}`
             .toLowerCase()
             .includes(searchTerm.toLowerCase())
+        )
+        .filter(
+          student =>
+            nooneHasATag ||
+            searchTag.length === 0 ||
+            tags[student.id].some(tag =>
+              tag.toLowerCase().includes(searchTag.toLowerCase())
+            )
         )
         .map((student, i) => (
           <div key={i} className="student-container">
