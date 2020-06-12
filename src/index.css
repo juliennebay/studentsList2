@@ -37,13 +37,42 @@ code {
   width: 50%;
 }
 
+#tag-search {
+  margin-top: 10px;
+}
+
+h4 {
+  line-height: 5%;
+}
+
 .student-container {
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: space-between;
   border-bottom: solid 2px lightgray;
 }
 
 button {
   margin-top: 20px;
+  margin-right: 50px;
+}
+
+.icon-container {
+  padding-top: 20px;
+  padding-left: 50px;
+}
+
+.icon {
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.student-profile {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
+#add-tag {
+  margin-bottom: 10px;
 }
