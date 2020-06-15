@@ -1,3 +1,10 @@
+### About this app
+I used React to re-create my previous Students List (https://github.com/juliennebay/studentsList), which was created with vanilla JS.
+
+This app fetches API containing information about different students, and creates a list. Users can expand each student's info for more detail, and add tags under each student if needed. Students can be searched by either their name or tags.
+
+### Where to view this app
+
 View this app here: https://juliennebay.github.io/studentsList2/
 
 ### Tech Stack
