@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import students from "./students";
 
-//"addTag" on line 6 = function addTag from line 86"
+//"addTag" on line 6 = function addTag from line 95"
 function Student({ student, addTag, tags }) {
   const [showGrades, setShowGrades] = useState(false);
 
@@ -53,7 +53,9 @@ function Student({ student, addTag, tags }) {
               placeholder="add tag"
             />
             {tags.map((tag, i) => (
-              <div key={i}>{tag}</div>
+              <div className="single-tag" key={i}>
+                {tag}
+              </div>
             ))}
           </div>
         ) : null}
@@ -92,7 +94,6 @@ function App() {
 
   const addTag = (studentId, newTag) => {
     setTags({ ...tags, [studentId]: [...tags[studentId], newTag] });
-    console.log(tags);
   };
 
   //search student by tag
@@ -101,8 +102,6 @@ function App() {
   const updateSearchTag = event => {
     setSearchTag(event.target.value);
   };
-
-  const nooneHasATag = Object.values(tags).flat().length === 0;
 
   return (
     <div className="App">
@@ -130,7 +129,6 @@ function App() {
         )
         .filter(
           student =>
-            nooneHasATag ||
             searchTag.length === 0 ||
             tags[student.id].some(tag =>
               tag.toLowerCase().includes(searchTag.toLowerCase())
